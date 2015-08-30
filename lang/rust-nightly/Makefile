@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	rust-nightly
-PORTVERSION=	1.3.0.20150703
+PORTVERSION=	1.3.0.20150717
 CATEGORIES=	lang
 MASTER_SITES=	http://www.ntecs.de/downloads/rust/:bootstrap
 DISTFILES=	${RUST_BOOT}:bootstrap
@@ -19,11 +19,11 @@ GH_PROJECT=	rust \
 		hoedown:hoedown \
 		jemalloc:jemalloc \
 		rust-installer:rust_installer
-GH_TAGNAME=	7b148381c7 \
+GH_TAGNAME=	d4432b3737 \
 		58ab642:compiler_rt \
 		238c4d5:hoedown \
 		e24a1a0:jemalloc \
-		8e4f8ea:rust_installer
+		c37d374:rust_installer
 
 MAINTAINER=	dumbbell@FreeBSD.org
 COMMENT=	Language with a focus on memory safety and concurrency
@@ -64,8 +64,9 @@ CONFIGURE_ARGS=	--disable-valgrind --disable-docs \
 		--release-channel=${RUST_CHANNEL}
 
 # Use LLVM from ports, instead of the copy shipped with rust.
-LLVM_VER=	36
+LLVM_VER=	37
 BUILD_DEPENDS+=	llvm${LLVM_VER}>=0:${PORTSDIR}/devel/llvm${LLVM_VER}
+RUN_DEPENDS+=	llvm${LLVM_VER}>=0:${PORTSDIR}/devel/llvm${LLVM_VER}
 CONFIGURE_ARGS+=--llvm-root=${LOCALBASE}/llvm${LLVM_VER}
 
 .if defined(BATCH) || defined(PACKAGE_BUILDING)
