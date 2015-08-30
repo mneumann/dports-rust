@@ -10,3 +10,5 @@ SHA256 (rust-lang-jemalloc-e24a1a0_GH0.tar.gz) = c50c61eae80772cbc7af0905110c30f
 SIZE (rust-lang-jemalloc-e24a1a0_GH0.tar.gz) = 398919
 SHA256 (rust-lang-rust-installer-c37d374_GH0.tar.gz) = 7cc41029b14de023dd4f250b332470c98cf9d1a77d174a20e93d78d07e4255f1
 SIZE (rust-lang-rust-installer-c37d374_GH0.tar.gz) = 19267
+SHA256 (rust-lang-llvm-874dc4e_GH0.tar.gz) = ad405322d0c6b91830d4804ab6a2af952c2be1b2bdaf4d0f788614778cba39d4
+SIZE (rust-lang-llvm-874dc4e_GH0.tar.gz) = 21077847

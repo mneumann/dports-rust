@@ -10,7 +10,8 @@ EXTRACT_ONLY=	${DISTNAME}${_GITHUB_EXTRACT_SUFX} \
 		${DISTFILE_compiler_rt} \
 		${DISTFILE_hoedown} \
 		${DISTFILE_jemalloc} \
-		${DISTFILE_rust_installer}
+		${DISTFILE_rust_installer} \
+		${DISTFILE_llvm}
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	rust-lang
@@ -18,12 +19,15 @@ GH_PROJECT=	rust \
 		compiler-rt:compiler_rt \
 		hoedown:hoedown \
 		jemalloc:jemalloc \
-		rust-installer:rust_installer
+		rust-installer:rust_installer \
+		llvm:llvm
+
 GH_TAGNAME=	d4432b3737 \
 		58ab642:compiler_rt \
 		238c4d5:hoedown \
 		e24a1a0:jemalloc \
-		c37d374:rust_installer
+		c37d374:rust_installer \
+		874dc4e:llvm
 
 MAINTAINER=	dumbbell@FreeBSD.org
 COMMENT=	Language with a focus on memory safety and concurrency
@@ -63,12 +67,6 @@ CONFIGURE_ARGS=	--disable-valgrind --disable-docs \
 		--enable-clang --mandir=${MANPREFIX}/man \
 		--release-channel=${RUST_CHANNEL}
 
-# Use LLVM from ports, instead of the copy shipped with rust.
-LLVM_VER=	37
-BUILD_DEPENDS+=	llvm${LLVM_VER}>=0:${PORTSDIR}/devel/llvm${LLVM_VER}
-RUN_DEPENDS+=	llvm${LLVM_VER}>=0:${PORTSDIR}/devel/llvm${LLVM_VER}
-CONFIGURE_ARGS+=--llvm-root=${LOCALBASE}/llvm${LLVM_VER}
-
 .if defined(BATCH) || defined(PACKAGE_BUILDING)
 MAKE_ARGS+=	VERBOSE=1
 .endif
@@ -93,6 +91,8 @@ post-extract:
 	  ${MV} ${WRKSRC_jemalloc} ${WRKSRC}/src/jemalloc)
 	@(${RMDIR} ${WRKSRC}/src/rust-installer && \
 	  ${MV} ${WRKSRC_rust_installer} ${WRKSRC}/src/rust-installer)
+	@(${RMDIR} ${WRKSRC}/src/llvm && \
+	  ${MV} ${WRKSRC_llvm} ${WRKSRC}/src/llvm)
 	@${MKDIR} ${WRKSRC}/dl
 	${LN} -sf ${DISTDIR}/${RUST_BOOT} ${WRKSRC}/dl
 	(cd ${WRKSRC} && find . -type d -exec chmod 0755 {} \;)
