@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	rust-nightly
-PORTVERSION=	1.3.0.20150717
+PORTVERSION=	1.3.0.20150726
 CATEGORIES=	lang
 MASTER_SITES=	http://www.ntecs.de/downloads/rust/:bootstrap
 DISTFILES=	${RUST_BOOT}:bootstrap
@@ -22,7 +22,7 @@ GH_PROJECT=	rust \
 		rust-installer:rust_installer \
 		llvm:llvm
 
-GH_TAGNAME=	d4432b3737 \
+GH_TAGNAME=	a5c12f4e39 \
 		58ab642:compiler_rt \
 		238c4d5:hoedown \
 		e24a1a0:jemalloc \
@@ -50,7 +50,7 @@ CONFLICTS_BUILD=	rust \
 CONFLICTS_INSTALL=	rust-nightly
 
 RUST_BOOT=	rust-stage0-${RUST_BOOT_SIG}.tar.bz2
-RUST_BOOT_SIG=  2015-06-12-50ab23d-dragonfly-x86_64-54171b3357723941a1025da60d090ca84634cdac
+RUST_BOOT_SIG=  2015-07-17-d4432b3-dragonfly-x86_64-af5a69521d7ae8fa5d635b61389d3c7f12b63651
 
 # Rust's libraries are named librustc_${component}-${RUST_VSN_HASH}.so.
 # The hash depends on Rust version and channel. See
